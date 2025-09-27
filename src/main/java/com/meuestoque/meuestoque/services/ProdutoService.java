@@ -12,20 +12,18 @@ import java.util.List;
 public class ProdutoService {
 
     @Autowired
-    private ProdutoRepository produto;
-
-//    public List<ProdutoResponseDTO> mostrarProdutos(){
-//        List<ProdutoEntity> entities = produto.findAll();
-//
-//        return entities.stream().map(ProdutoResponseDTO::new).toList();
-//    }
+    private ProdutoRepository produtoRepository;
 
     public List<ProdutoEntity> mostrarProdutos(){
-        return produto.findAll();
+        return produtoRepository.findAll();
     }
 
     public ProdutoEntity criarProduto(ProdutoEntity novoProduto){
-        return  produto.save(novoProduto);
+        return produtoRepository.save(novoProduto);
     }
 
+    public String excluirProduto(Long id) {
+        produtoRepository.deleteById(id);
+        return "Produto de id " + id + " excluído";
+    }
 }

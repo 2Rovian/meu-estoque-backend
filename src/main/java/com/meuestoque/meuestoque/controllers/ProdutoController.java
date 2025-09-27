@@ -24,4 +24,9 @@ public class ProdutoController {
     public ProdutoEntity criarProduto(@RequestBody ProdutoEntity body){
         return produtoService.criarProduto(body);
     }
+
+    @DeleteMapping("/{id}")
+    public String excluirProduto(@PathVariable Long id) {
+        return produtoService.excluirProduto(id);
+    }
 }
