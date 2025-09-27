@@ -14,8 +14,18 @@ public class ProdutoService {
     @Autowired
     private ProdutoRepository produto;
 
-    public List<ProdutoEntity> produtos(){
+//    public List<ProdutoResponseDTO> mostrarProdutos(){
+//        List<ProdutoEntity> entities = produto.findAll();
+//
+//        return entities.stream().map(ProdutoResponseDTO::new).toList();
+//    }
+
+    public List<ProdutoEntity> mostrarProdutos(){
         return produto.findAll();
+    }
+
+    public ProdutoEntity criarProduto(ProdutoEntity novoProduto){
+        return  produto.save(novoProduto);
     }
 
 }
