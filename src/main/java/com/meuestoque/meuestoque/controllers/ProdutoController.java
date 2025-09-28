@@ -3,6 +3,7 @@ import com.meuestoque.meuestoque.entities.ProdutoEntity;
 import com.meuestoque.meuestoque.services.ProdutoService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,12 +18,12 @@ public class ProdutoController {
     private ProdutoService produtoService;
 
     @GetMapping
-    public List<ProdutoEntity> produtos(){
-        return produtoService.mostrarProdutos();
+    public ResponseEntity<List<ProdutoEntity>> produtos(){
+        return ResponseEntity.ok(produtoService.mostrarProdutos());
     }
     
     @GetMapping("/{id}")
-    public Optional<ProdutoEntity> produto(@PathVariable Long id){
+    public Optional<ProdutoEntity> produtoUnico(@PathVariable Long id){
         return produtoService.mostrarProdutoPorId(id);
     }
 
