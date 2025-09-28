@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -16,6 +17,10 @@ public class ProdutoService {
 
     public List<ProdutoEntity> mostrarProdutos(){
         return produtoRepository.findAll();
+    }
+
+    public Optional<ProdutoEntity> mostrarProdutoPorId(Long id){
+        return produtoRepository.findById(id);
     }
 
     public ProdutoEntity criarProduto(ProdutoEntity novoProduto){
