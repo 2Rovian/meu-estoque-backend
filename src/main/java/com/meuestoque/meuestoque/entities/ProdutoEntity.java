@@ -12,13 +12,14 @@ import lombok.Setter;
 @NoArgsConstructor
 public class ProdutoEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    public ProdutoEntity(Double price, Integer quantity, String name) {
+    public ProdutoEntity(Double price, Integer quantity, String name, String category) {
         this.price = price;
         this.quantity = quantity;
         this.name = name;
+        this.category = category;
     }
 
     @Column(nullable = false)

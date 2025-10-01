@@ -18,8 +18,8 @@ public class ProdutoController {
     private ProdutoService produtoService;
 
     @GetMapping
-    public ResponseEntity<List<ProdutoEntity>> produtos(){
-        return ResponseEntity.ok(produtoService.mostrarProdutos());
+    public List<ProdutoEntity> mostrarProdutos(){
+        return produtoService.mostrarProdutos();
     }
     
     @GetMapping("/{id}")
