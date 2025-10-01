@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "tb_produtos")
+@Table(name = "tb_products")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -25,4 +25,5 @@ public class ProdutoEntity {
     private String name;
     private Double price;
     private Integer quantity = 1;
+    private String category;
 }
