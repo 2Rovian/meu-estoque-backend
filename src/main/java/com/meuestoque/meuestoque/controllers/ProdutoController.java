@@ -17,23 +17,33 @@ public class ProdutoController {
     @Autowired
     private ProdutoService produtoService;
 
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping
     public List<ProdutoEntity> mostrarProdutos(){
         return produtoService.mostrarProdutos();
     }
-    
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/{id}")
     public Optional<ProdutoEntity> produtoUnico(@PathVariable Long id){
         return produtoService.mostrarProdutoPorId(id);
     }
 
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping
     public ProdutoEntity criarProduto(@RequestBody ProdutoEntity body){
         return produtoService.criarProduto(body);
     }
 
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @DeleteMapping("/{id}")
     public String excluirProduto(@PathVariable Long id) {
         return produtoService.excluirProduto(id);
+    }
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @PutMapping("/{id}")
+    public ResponseEntity editarProduto(@PathVariable Long id, @RequestBody ProdutoEntity body){
+        return produtoService.editarProduto(id, body);
     }
 }

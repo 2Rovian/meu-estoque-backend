@@ -2,7 +2,10 @@ package com.meuestoque.meuestoque.services;
 import com.meuestoque.meuestoque.entities.ProdutoEntity;
 import com.meuestoque.meuestoque.repositories.ProdutoRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,5 +33,15 @@ public class ProdutoService {
     public String excluirProduto(Long id) {
         produtoRepository.deleteById(id);
         return "Produto de id " + id + " excluído";
+    }
+
+    public ResponseEntity<?> editarProduto(Long id, ProdutoEntity produto) {
+        Optional<ProdutoEntity> produtoAtual = produtoRepository.findById(id);
+        if(produtoAtual.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("not found product");
+        }
+        var produtoEditado = produtoAtual.get();
+        BeanUtils.copyProperties(produto, produtoEditado, "id");
+        return ResponseEntity.status(HttpStatus.OK).body(produtoRepository.save(produtoEditado));
     }
 }
