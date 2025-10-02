@@ -18,6 +18,10 @@ public class ProdutoService {
     @Autowired
     private ProdutoRepository produtoRepository;
 
+    public List<ProdutoEntity> mostrarProdutoPorNome( String name){
+        return produtoRepository.findProductByNameContaining(name);
+    }
+
     public List<ProdutoEntity> mostrarProdutos(){
         return produtoRepository.findAll();
     }

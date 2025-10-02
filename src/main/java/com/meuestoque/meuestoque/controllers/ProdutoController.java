@@ -19,7 +19,10 @@ public class ProdutoController {
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping
-    public List<ProdutoEntity> mostrarProdutos(){
+    public List<ProdutoEntity> mostrarProdutos(@RequestParam(required = false, name = "nome") String nome){
+        if(nome != null && !nome.isEmpty()) {
+            return produtoService.mostrarProdutoPorNome(nome);
+        }
         return produtoService.mostrarProdutos();
     }
 
@@ -43,7 +46,7 @@ public class ProdutoController {
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PutMapping("/{id}")
-    public ResponseEntity editarProduto(@PathVariable Long id, @RequestBody ProdutoEntity body){
+    public ResponseEntity editarProduto(@PathVariable(name = "id") Long id, @RequestBody ProdutoEntity body){
         return produtoService.editarProduto(id, body);
     }
 }
