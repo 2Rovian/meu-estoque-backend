@@ -19,9 +19,14 @@ public class ProdutoController {
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping
-    public List<ProdutoEntity> mostrarProdutos(@RequestParam(required = false, name = "nome") String nome){
+    public List<ProdutoEntity> mostrarProdutos(
+            @RequestParam(required = false, name = "nome") String nome,
+            @RequestParam(required = false, name = "categoria") String categoria
+    ) {
         if(nome != null && !nome.isEmpty()) {
             return produtoService.mostrarProdutoPorNome(nome);
+        } else if(categoria != null && !categoria.isEmpty()){
+            return produtoService.mostrarProdutoPorCategoria(categoria);
         }
         return produtoService.mostrarProdutos();
     }
